@@ -4,6 +4,6 @@ import 'package:aoc2020/day3.dart' as day3;
 
 void main(List<String> arguments) {
   print('Advent of Code 2020');
-  day3.partA();
-  day3.partB();
+  day4.partA();
+  day4.partB();
 }
