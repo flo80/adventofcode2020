@@ -1,6 +1,7 @@
 import 'package:aoc2020/day2.dart' as day2;
 import 'package:aoc2020/day3.dart' as day3;
 import 'package:aoc2020/day4.dart' as day4;
+import 'package:aoc2020/day5.dart' as day5;
 import 'package:test/test.dart';
 
 void main() {
@@ -90,5 +91,13 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719""";
     final validEntries = day4.parseEntries(valids);
     expect(validEntries.length, 4);
     expect(day4.checkAllRequiredThings(validEntries), 4);
+  });
+
+  test("Day5 part A", () {
+    final input = "BFFFBBFRRR\nFFFBBBFRRR\nBBFFBBFRLL".split("\n");
+    final expected = [567, 119, 820];
+    for (var i = 0; i < input.length; i++) {
+      expect(day5.parseNr(input[i]), expected[i]);
+    }
   });
 }
