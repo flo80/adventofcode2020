@@ -1,12 +1,21 @@
 import 'package:aoc2020/common.dart';
 
+const DAY = 4;
+
+void main([List<String> args, dynamic message]) {
+  sp = message;
+
+  partA();
+  partB();
+}
+
 class Entry {
-  final fields = Map<String, String>();
+  final fields = <String, String>{};
   final String input;
 
   Entry(this.input) {
-    input.split(" ").forEach((element) {
-      final data = element.split(":");
+    input.split(' ').forEach((element) {
+      final data = element.split(':');
       fields[data[0]] = data[1];
     });
   }
@@ -38,22 +47,22 @@ bool checkYearField(String entry, int min, int max) {
 
 bool checkHeight(String entry) {
   final unit = entry.substring(entry.length - 2);
-  if (!(unit == "cm" || unit == "in")) return false;
+  if (!(unit == 'cm' || unit == 'in')) return false;
 
   final number = int.parse(entry.substring(0, entry.length - 2));
-  if (unit == "cm") {
+  if (unit == 'cm') {
     return number >= 150 && number <= 193;
   }
   return number >= 59 && number <= 76;
 }
 
 bool checkHairColor(String entry) {
-  RegExp r = new RegExp(r"^\#[0-9a-f]{6}$");
+  final r = RegExp(r'^\#[0-9a-f]{6}$');
   return r.hasMatch(entry);
 }
 
 bool checkEyeColor(String entry) {
-  final allowed = {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"};
+  final allowed = {'amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'};
   return allowed.contains(entry);
 }
 
@@ -64,20 +73,20 @@ bool checkPid(String entry) {
 }
 
 void partA() {
-  print("\nDay 4 - Part A");
+  printHeader(DAY, Part.A);
 
   final input = loadFile(4);
 
-  Iterable<Entry> entries = parseEntries(input);
-  int count = checkRequiredFields(entries);
+  final entries = parseEntries(input);
+  final count = checkRequiredFields(entries);
 
-  print("Valid entries: $count");
+  print('Valid entries: $count');
 }
 
 Iterable<Entry> parseEntries(String input) {
   final entries = input
-      .split("\n\n")
-      .map((e) => e.replaceAll("\n", " "))
+      .split('\n\n')
+      .map((e) => e.replaceAll('\n', ' '))
       .map((e) => Entry(e));
   return entries;
 }
@@ -88,26 +97,25 @@ int checkRequiredFields(Iterable<Entry> entries) {
 }
 
 void partB() {
-  print("\nDay 4 - Part B");
+  printHeader(DAY, Part.B);
+  final input = loadFile(DAY);
 
-  final input = loadFile(4);
+  final entries = parseEntries(input);
+  final count = checkAllRequiredThings(entries);
 
-  Iterable<Entry> entries = parseEntries(input);
-  int count = checkAllRequiredThings(entries);
-
-  print("Valid entries: $count");
+  print('Valid entries: $count');
 }
 
 int checkAllRequiredThings(Iterable<Entry> entries) {
   bool isValid(Entry e) {
     return hasAllFields(e) &&
-        checkYearField(e.fields["byr"], 1920, 2002) &&
-        checkYearField(e.fields["iyr"], 2010, 2020) &&
-        checkYearField(e.fields["eyr"], 2020, 2030) &&
-        checkHeight(e.fields["hgt"]) &&
-        checkHairColor(e.fields["hcl"]) &&
-        checkEyeColor(e.fields["ecl"]) &&
-        checkPid(e.fields["pid"]);
+        checkYearField(e.fields['byr'], 1920, 2002) &&
+        checkYearField(e.fields['iyr'], 2010, 2020) &&
+        checkYearField(e.fields['eyr'], 2020, 2030) &&
+        checkHeight(e.fields['hgt']) &&
+        checkHairColor(e.fields['hcl']) &&
+        checkEyeColor(e.fields['ecl']) &&
+        checkPid(e.fields['pid']);
   }
 
   final count = entries.map(isValid).where((element) => element).length;

@@ -1,25 +1,33 @@
 import 'package:aoc2020/common.dart';
 
-void partA() {
-  print("\nDay 3 - Part A");
+const DAY = 3;
 
-  final input = loadFile(3);
+void main([List<String> args, dynamic message]) {
+  sp = message;
+
+  partA();
+  partB();
+}
+
+void partA() {
+  printHeader(DAY, Part.A);
+  final input = loadFile(DAY);
   final count = countHits(input);
-  print("Trees hit: $count");
+  print('Trees hit: $count');
 }
 
 int countHits(String input, [int right = 3, int down = 1]) {
-  final lines = input.split("\n");
+  final lines = input.split('\n');
 
   final rows = lines.length;
   final columns = lines[1].length;
 
-  int row = 0;
-  int column = 0;
-  int count = 0;
+  var row = 0;
+  var column = 0;
+  var count = 0;
   while (row < rows) {
     final char = lines[row][column];
-    if (char == "#") {
+    if (char == '#') {
       count++;
     }
     row += down;
@@ -43,9 +51,9 @@ int countHitOptions(String input) {
 }
 
 void partB() {
-  print("\nDay 3 - Part B");
+  printHeader(DAY, Part.B);
+  final input = loadFile(DAY);
 
-  final input = loadFile(3);
   final count = countHitOptions(input);
-  print("Hit Trees multiplied: $count");
+  print('Hit Trees multiplied: $count');
 }
