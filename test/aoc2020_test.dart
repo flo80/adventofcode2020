@@ -2,6 +2,7 @@ import 'package:aoc2020/day2.dart' as day2;
 import 'package:aoc2020/day3.dart' as day3;
 import 'package:aoc2020/day4.dart' as day4;
 import 'package:aoc2020/day5.dart' as day5;
+import 'package:aoc2020/day7.dart' as day7;
 import 'package:test/test.dart';
 
 void main() {
@@ -99,5 +100,36 @@ iyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719''';
     for (var i = 0; i < input.length; i++) {
       expect(day5.parseNr(input[i]), expected[i]);
     }
+  });
+
+  test('Day 7, part A', () {
+    final rules =
+        """light red bags contain 1 bright white bag, 2 muted yellow bags.
+dark orange bags contain 3 bright white bags, 4 muted yellow bags.
+bright white bags contain 1 shiny gold bag.
+muted yellow bags contain 2 shiny gold bags, 9 faded blue bags.
+shiny gold bags contain 1 dark olive bag, 2 vibrant plum bags.
+dark olive bags contain 3 faded blue bags, 4 dotted black bags.
+vibrant plum bags contain 5 faded blue bags, 6 dotted black bags.
+faded blue bags contain no other bags.
+dotted black bags contain no other bags.""";
+
+    final bags = rules.split('\n').map(day7.parseLine);
+    final result = day7.possibleOptionsOutsideShinyGold(bags);
+    expect(result, 4);
+  });
+
+  test('Day 7, part B', () {
+    final rules = """shiny gold bags contain 2 dark red bags.
+dark red bags contain 2 dark orange bags.
+dark orange bags contain 2 dark yellow bags.
+dark yellow bags contain 2 dark green bags.
+dark green bags contain 2 dark blue bags.
+dark blue bags contain 2 dark violet bags.
+dark violet bags contain no other bags.""";
+
+    final bags = rules.split('\n').map(day7.parseLine);
+    final result = day7.bagsInsideShinyGold(bags);
+    expect(result, 126);
   });
 }
