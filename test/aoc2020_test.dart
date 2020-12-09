@@ -4,6 +4,7 @@ import 'package:aoc2020/day4.dart' as day4;
 import 'package:aoc2020/day5.dart' as day5;
 import 'package:aoc2020/day7.dart' as day7;
 import 'package:aoc2020/day8.dart' as day8;
+import 'package:aoc2020/day9.dart' as day9;
 import 'package:test/test.dart';
 
 void main() {
@@ -162,5 +163,34 @@ acc +6''';
 
     final result = day8.runToHalt(input);
     expect(result, 8);
+  });
+
+  test('Day 9, part A & B', () {
+    final numbers = [
+      35,
+      20,
+      15,
+      25,
+      47,
+      40,
+      62,
+      55,
+      65,
+      95,
+      102,
+      117,
+      150,
+      182,
+      127,
+      219,
+      299,
+      277,
+      309,
+      576
+    ];
+    final target = day9.firstIncorrect(numbers, preamble: 5);
+    expect(target, 127);
+
+    expect(day9.findContSum(numbers, target), 62);
   });
 }
