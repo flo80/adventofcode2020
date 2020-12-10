@@ -5,6 +5,7 @@ import 'package:aoc2020/day5.dart' as day5;
 import 'package:aoc2020/day7.dart' as day7;
 import 'package:aoc2020/day8.dart' as day8;
 import 'package:aoc2020/day9.dart' as day9;
+import 'package:aoc2020/day10.dart' as day10;
 import 'package:test/test.dart';
 
 void main() {
@@ -192,5 +193,23 @@ acc +6''';
     expect(target, 127);
 
     expect(day9.findContSum(numbers, target), 62);
+  });
+
+  test('Day 10, part A', () {
+    final example1 = "16\n10\n15\n5\n1\n11\n7\n19\n6\n12\n4";
+    expect(day10.joltDiff(example1), 7 * 5);
+
+    final example2 =
+        "28\n33\n18\n42\n31\n14\n46\n20\n48\n47\n24\n23\n49\n45\n19\n38\n39\n11\n1\n32\n25\n35\n8\n17\n7\n9\n4\n2\n34\n10\n3";
+    expect(day10.joltDiff(example2), 22 * 10);
+  });
+
+  test('Day 10, part B', () {
+    final example1 = "16\n10\n15\n5\n1\n11\n7\n19\n6\n12\n4";
+    expect(day10.countOptions(example1), 8);
+
+    final example2 =
+        "28\n33\n18\n42\n31\n14\n46\n20\n48\n47\n24\n23\n49\n45\n19\n38\n39\n11\n1\n32\n25\n35\n8\n17\n7\n9\n4\n2\n34\n10\n3";
+    expect(day10.countOptions(example2), 19208);
   });
 }
