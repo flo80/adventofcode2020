@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:aoc2020/common.dart';
 
 const DAY = 10;
@@ -31,7 +29,7 @@ int joltDiff(String input) {
     } else if (nr - comp == 3) {
       threes++;
     } else if (nr - comp > 3) {
-      throw new Exception();
+      throw Exception();
     }
     comp = nr;
   }
@@ -64,18 +62,4 @@ int countOptions(String input) {
   }
 
   return options[target];
-}
-
-int _countOptions(List<int> values, int currentValue) {
-  if (values.isEmpty || values.length == 1) return 1;
-
-  var cnt = 0;
-  for (var optionCnt = 0; optionCnt < min(3, values.length); optionCnt++) {
-    final option = values[optionCnt];
-    if (option > currentValue + 3) break;
-
-    cnt += _countOptions(values.sublist(optionCnt + 1), option);
-  }
-
-  return cnt;
 }
