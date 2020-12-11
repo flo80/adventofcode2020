@@ -13,6 +13,8 @@ class Coord {
   final int x;
   final int y;
 
+  List<Coord> neighbors;
+
   Coord(this.x, this.y);
 
   @override
@@ -57,6 +59,42 @@ class Grid {
   }
 }
 
+const _directions = [
+  [-1, -1],
+  [0, -1],
+  [1, -1],
+  [-1, 0],
+  [1, 0],
+  [-1, 1],
+  [0, 1],
+  [1, 1]
+];
+
+void fillNeighborsA(Grid grid) {
+  grid.seats.keys.forEach((c) {
+    c.neighbors = _directions
+        .map((e) => Coord(c.x + e[0], c.y + e[1]))
+        .where((e) => e.x >= 0 && e.y >= 0 && e.x < grid.xs && e.y < grid.ys)
+        .toList();
+  });
+}
+
+void fillNeighborsB(Grid grid) {
+  grid.seats.keys.forEach((c) {
+    c.neighbors = _directions
+        .map((e) {
+          for (var step = 1; step < 10000; step++) {
+            final newCoord = Coord(c.x + e[0] * step, c.y + e[1] * step);
+            final s = grid.seats[newCoord];
+            if (s != State.Floor) return newCoord;
+          }
+          throw Exception('Something went wrong or grid is too large');
+        })
+        .where((e) => e.x >= 0 && e.y >= 0 && e.x < grid.xs && e.y < grid.ys)
+        .toList();
+  });
+}
+
 enum State { Floor, Empty, Occupied }
 
 Grid parseInput(String input) {
@@ -85,43 +123,16 @@ Grid parseInput(String input) {
   return Grid(data, lines[0].length, lines.length);
 }
 
-const _directions = [
-  [-1, -1],
-  [0, -1],
-  [1, -1],
-  [-1, 0],
-  [1, 0],
-  [-1, 1],
-  [0, 1],
-  [1, 1]
-];
-
-int neighborsA(Coord c, Grid grid) {
-  final fields = _directions.map((e) => Coord(c.x + e[0], c.y + e[1]));
-
-  return fields
-      .map((e) => grid.seats[e] == State.Occupied ? 1 : 0)
-      .reduce((value, element) => value + element);
-}
-
-int neighborsB(Coord c, Grid grid) {
-  final fields = _directions.map((e) {
-    for (var step = 1; step < 10000; step++) {
-      final newCoord = Coord(c.x + e[0] * step, c.y + e[1] * step);
-      final s = grid.seats[newCoord];
-      if (s == null || s == State.Empty) return 0;
-      if (s == State.Occupied) return 1;
-    }
-    throw Exception('Something went wrong or grid is too large');
-  });
-  return fields.reduce((value, element) => value + element);
-}
-
-bool advance(
-    Grid grid, int Function(Coord, Grid) neighbors, int occupiedCount) {
+bool advance(Grid grid, int occupiedCount) {
   final newGrid = <Coord, State>{};
   newGrid.addAll(grid.seats);
   var didChange = false;
+
+  int neighbors(Coord c, Grid grid) {
+    return c.neighbors
+        .map((e) => grid.seats[e] == State.Occupied ? 1 : 0)
+        .reduce((value, element) => value + element);
+  }
 
   for (var item
       in grid.seats.entries.where((element) => element.value != State.Floor)) {
@@ -149,18 +160,20 @@ bool advance(
 }
 
 int runUntilStableA(Grid grid) {
+  fillNeighborsA(grid);
   var changed = false;
   do {
-    changed = advance(grid, neighborsA, 4);
+    changed = advance(grid, 4);
   } while (changed);
 
   return grid.seats.values.where((element) => element == State.Occupied).length;
 }
 
 int runUntilStableB(Grid grid) {
+  fillNeighborsB(grid);
   var changed = false;
   do {
-    changed = advance(grid, neighborsB, 5);
+    changed = advance(grid, 5);
   } while (changed);
 
   return grid.seats.values.where((element) => element == State.Occupied).length;
