@@ -7,6 +7,7 @@ import 'package:aoc2020/day8.dart' as day8;
 import 'package:aoc2020/day9.dart' as day9;
 import 'package:aoc2020/day10.dart' as day10;
 import 'package:aoc2020/day11.dart' as day11;
+import 'package:aoc2020/day12.dart' as day12;
 import 'package:test/test.dart';
 
 void main() {
@@ -230,5 +231,31 @@ L.LLLLL.LL''';
 
     final gridB = day11.parseInput(input);
     expect(day11.runUntilStableB(gridB), 26);
+  });
+
+  test('Day 12, part A', () {
+    final input = '''F10
+N3
+F7
+R90
+F11''';
+
+    final ship = day12.Ship();
+    ship.move(input);
+
+    expect(ship.dist, 25);
+  });
+
+  test('Day 12, part B', () {
+    final input = '''F10
+N3
+F7
+R90
+F11''';
+
+    final ship = day12.WaypointShip();
+    print(ship);
+    ship.move(input);
+    expect(ship.dist, 286);
   });
 }
