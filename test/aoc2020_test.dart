@@ -8,6 +8,7 @@ import 'package:aoc2020/day9.dart' as day9;
 import 'package:aoc2020/day10.dart' as day10;
 import 'package:aoc2020/day11.dart' as day11;
 import 'package:aoc2020/day12.dart' as day12;
+import 'package:aoc2020/day14.dart' as day14;
 import 'package:test/test.dart';
 
 void main() {
@@ -257,5 +258,23 @@ F11''';
     print(ship);
     ship.move(input);
     expect(ship.dist, 286);
+  });
+
+  test('Day 14, part A', () {
+    final input = '''mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
+mem[8] = 11
+mem[7] = 101
+mem[8] = 0''';
+
+    expect(day14.solveA(input), 165);
+  });
+
+  test('Day 14, part b', () {
+    final input = '''mask = 000000000000000000000000000000X1001X
+mem[42] = 100
+mask = 00000000000000000000000000000000X0XX
+mem[26] = 1''';
+
+    expect(day14.solveB(input), 208);
   });
 }
