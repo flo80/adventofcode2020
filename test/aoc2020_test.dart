@@ -9,6 +9,7 @@ import 'package:aoc2020/day10.dart' as day10;
 import 'package:aoc2020/day11.dart' as day11;
 import 'package:aoc2020/day12.dart' as day12;
 import 'package:aoc2020/day14.dart' as day14;
+import 'package:aoc2020/day15.dart' as day15;
 import 'package:test/test.dart';
 
 void main() {
@@ -276,5 +277,10 @@ mask = 00000000000000000000000000000000X0XX
 mem[26] = 1''';
 
     expect(day14.solveB(input), 208);
+  });
+
+  test('Day 15, part A', () {
+    final input = [0, 3, 6];
+    expect(day15.solveA(input), 436);
   });
 }
