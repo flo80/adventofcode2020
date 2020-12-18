@@ -10,6 +10,7 @@ import 'package:aoc2020/day11.dart' as day11;
 import 'package:aoc2020/day12.dart' as day12;
 import 'package:aoc2020/day14.dart' as day14;
 import 'package:aoc2020/day15.dart' as day15;
+import 'package:aoc2020/day17.dart' as day17;
 import 'package:test/test.dart';
 
 void main() {
@@ -283,4 +284,12 @@ mem[26] = 1''';
     final input = [0, 3, 6];
     expect(day15.solveA(input), 436);
   });
+
+  test('Day 17, part A', () {
+    final input = '''.#.
+..#
+###''';
+    expect(day17.solveA(input), 112);
+  });
+
 }
