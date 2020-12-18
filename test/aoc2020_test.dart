@@ -11,6 +11,7 @@ import 'package:aoc2020/day12.dart' as day12;
 import 'package:aoc2020/day14.dart' as day14;
 import 'package:aoc2020/day15.dart' as day15;
 import 'package:aoc2020/day17.dart' as day17;
+import 'package:aoc2020/day18.dart' as day18;
 import 'package:test/test.dart';
 
 void main() {
@@ -292,4 +293,30 @@ mem[26] = 1''';
     expect(day17.solveA(input), 112);
   });
 
+  test('Day 18, part A', () {
+    expect(day18.Solver('1 + 2 * 3 + 4 * 5 + 6').solve(), 71);
+    expect(day18.Solver('1 + (2 * 3) + (4 * (5 + 6)').solve(), 51);
+    expect(day18.Solver('2 * 3 + (4 * 5)').solve(), 26);
+    expect(day18.Solver('5 + (8 * 3 + 9 + 3 * 4 * 3)').solve(), 437);
+    expect(day18.Solver('5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))').solve(),
+        12240);
+    expect(
+        day18.Solver('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2').solve(),
+        13632);
+  });
+
+  test('Day 18, part B', () {
+    expect(day18.Solver('1 + 2 * 3 + 4 * 5 + 6').solveAdvanced(), 231);
+    expect(day18.Solver('1 + (2 * 3) + (4 * (5 + 6)').solveAdvanced(), 51);
+    expect(day18.Solver('2 * 3 + (4 * 5)').solveAdvanced(), 46);
+    expect(day18.Solver('5 + (8 * 3 + 9 + 3 * 4 * 3)').solveAdvanced(), 1445);
+    expect(
+        day18.Solver('5 * 9 * (7 * 3 * 3 + 9 * 3 + (8 + 6 * 4))')
+            .solveAdvanced(),
+        669060);
+    expect(
+        day18.Solver('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2')
+            .solveAdvanced(),
+        23340);
+  });
 }
