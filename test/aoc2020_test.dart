@@ -12,6 +12,7 @@ import 'package:aoc2020/day14.dart' as day14;
 import 'package:aoc2020/day15.dart' as day15;
 import 'package:aoc2020/day17.dart' as day17;
 import 'package:aoc2020/day18.dart' as day18;
+import 'package:aoc2020/day22.dart' as day22;
 import 'package:test/test.dart';
 
 void main() {
@@ -318,5 +319,36 @@ mem[26] = 1''';
         day18.Solver('((2 + 4 * 9) * (6 + 9 * 8 + 6) + 6) + 2 + 4 * 2')
             .solveAdvanced(),
         23340);
+  });
+  test('Day 22', () {
+    final input = '''Player 1:
+9
+2
+6
+3
+1
+
+Player 2:
+5
+8
+4
+7
+10''';
+
+    expect(day22.solve(input), 306);
+    expect(day22.solve(input, recursive: true), 291);
+  });
+
+  test('Day 22, loop test', () {
+    final input = '''Player 1:
+43
+19
+
+Player 2:
+2
+29
+14''';
+
+    expect(day22.solve(input, recursive: true), isNonZero);
   });
 }
