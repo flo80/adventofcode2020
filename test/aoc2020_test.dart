@@ -12,6 +12,7 @@ import 'package:aoc2020/day14.dart' as day14;
 import 'package:aoc2020/day15.dart' as day15;
 import 'package:aoc2020/day17.dart' as day17;
 import 'package:aoc2020/day18.dart' as day18;
+import 'package:aoc2020/day21.dart' as day21;
 import 'package:aoc2020/day22.dart' as day22;
 import 'package:test/test.dart';
 
@@ -320,6 +321,16 @@ mem[26] = 1''';
             .solveAdvanced(),
         23340);
   });
+  test('Day 21, Part A & B', () {
+    final input = '''mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
+trh fvjkl sbzzf mxmxvkd (contains dairy)
+sqjhc fvjkl (contains soy)
+sqjhc mxmxvkd sbzzf (contains fish)''';
+
+    expect(day21.solveA(input), 5);
+    expect(day21.solveB(input), 'mxmxvkd,sqjhc,fvjkl');
+  });
+
   test('Day 22', () {
     final input = '''Player 1:
 9
