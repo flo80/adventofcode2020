@@ -14,6 +14,7 @@ import 'package:aoc2020/day17.dart' as day17;
 import 'package:aoc2020/day18.dart' as day18;
 import 'package:aoc2020/day21.dart' as day21;
 import 'package:aoc2020/day22.dart' as day22;
+import 'package:aoc2020/day23.dart' as day23;
 import 'package:test/test.dart';
 
 void main() {
@@ -361,5 +362,11 @@ Player 2:
 14''';
 
     expect(day22.solve(input, recursive: true), isNonZero);
+  });
+
+  test('Day 23, Part A & B', () {
+    final input = '389125467'.split('').map(int.parse).toList();
+
+    expect(day23.solveA(input), '67384529');
   });
 }
