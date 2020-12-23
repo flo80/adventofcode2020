@@ -368,5 +368,6 @@ Player 2:
     final input = '389125467'.split('').map(int.parse).toList();
 
     expect(day23.solveA(input), '67384529');
+    expect(day23.solveB(input), 149245887792);
   });
 }
