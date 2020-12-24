@@ -15,6 +15,7 @@ import 'package:aoc2020/day18.dart' as day18;
 import 'package:aoc2020/day21.dart' as day21;
 import 'package:aoc2020/day22.dart' as day22;
 import 'package:aoc2020/day23.dart' as day23;
+import 'package:aoc2020/day24.dart' as day24;
 import 'package:test/test.dart';
 
 void main() {
@@ -369,5 +370,31 @@ Player 2:
 
     expect(day23.solveA(input), '67384529');
     expect(day23.solveB(input), 149245887792);
+  });
+
+  test("day 24, Part A & B", () {
+    final input = '''sesenwnenenewseeswwswswwnenewsewsw
+neeenesenwnwwswnenewnwwsewnenwseswesw
+seswneswswsenwwnwse
+nwnwneseeswswnenewneswwnewseswneseene
+swweswneswnenwsewnwneneseenw
+eesenwseswswnenwswnwnwsewwnwsene
+sewnenenenesenwsewnenwwwse
+wenwwweseeeweswwwnwwe
+wsweesenenewnwwnwsenewsenwwsesesenwne
+neeswseenwwswnwswswnw
+nenwswwsewswnenenewsenwsenwnesesenew
+enewnwewneswsewnwswenweswnenwsenwsw
+sweneswneswneneenwnewenewwneswswnese
+swwesenesewenwneswnwwneseswwne
+enesenwswwswneneswsenwnewswseenwsese
+wnwnesenesenenwwnenwsewesewsesesew
+nenewswnwewswnenesenwnesewesw
+eneswnwswnwsenenwnwnwwseeswneewsenese
+neswnwewnwnwseenwseesewsenwsweewe
+wseweeenwnesenwwwswnew''';
+
+    expect(day24.solveA(input), 10);
+    expect(day24.solveB(input), 2208);
   });
 }
